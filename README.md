@@ -22,6 +22,14 @@ Um Authorization Server centraliza a autenticação e a emissão de tokens JWT:
 - **JWK/JWT** para assinatura de tokens
 - **Scopes**: `openid`, `api`
 
+## Gerando Keystore (JKS)
+Antes de iniciar a aplicação, gere o arquivo `./certs/oauth2-keys.jks` com a seguinte linha:
+```bash
+keytool -genkeypair -alias oauth2-jwt-key -keyalg RSA -keysize 2048 -storetype JKS -keystore ./certs/oauth2-keys.jks -validity 3650
+```
+- **Senha do keystore:** `changeit`
+- **Senha da chave:** `changeit`
+
 ## Endpoints
 - `/oauth2/authorize` - Endpoint de autorização (Authorization Code)
 - `/oauth2/token` - Endpoint para obtenção de tokens JWT
@@ -65,7 +73,7 @@ curl -X POST http://localhost:8080/api/users \
       }'
 ```
 
-> **Atenção:** Somente tokens com **escopo `api`** ou **ROLE_ADMIN** podem criar novos usuários.
+> **Atenção:** Somente tokens com **escopo `api`** E **ROLE_ADMIN** podem criar novos usuários.
 
 ## Conclusão
 Com este Authorization Server você garante:
@@ -77,4 +85,3 @@ Com este Authorization Server você garante:
 ---
 
 Spring Security + OAuth2: Segurança moderna e escalável para suas APIs.
-
