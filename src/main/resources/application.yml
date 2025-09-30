@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: jwt-oauth2-resource-server
+  data:
+    mongodb:
+      host: localhost # The hostname or IP address of your MongoDB server
+      port: 27017    # The port number your MongoDB server is listening on (default is 27017)
+      database: database # The name of the database to connect to
+
+    security:
+      oauth2:
+        authorizationserver:
+          jwt:
+            key-store-location: ./certs/oauth2-keys.jks
+            key-store-password: changeit
+            key-alias: oauth2-jwt-key
+            key-password: changeit
+logging:
+  level:
+    br.com.security.server.oauth2.jwt: INFO
+    org:
+      springframework:
+        security: TRACE
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    metrics:
+      enabled: true  
+
