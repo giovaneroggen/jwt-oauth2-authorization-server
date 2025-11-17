@@ -1,12 +1,17 @@
 spring:
   application:
     name: jwt-oauth2-resource-server
+  datasource:
+    url: jdbc:postgresql://45.179.43.250:8081/database
+    username: postgres
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          format_sql: true
+      show-sql: true
   data:
-    mongodb:
-      host: localhost # The hostname or IP address of your MongoDB server
-      port: 27017    # The port number your MongoDB server is listening on (default is 27017)
-      database: database # The name of the database to connect to
-
     security:
       oauth2:
         authorizationserver:
